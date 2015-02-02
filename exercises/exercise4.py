@@ -7,8 +7,8 @@ character_with_spaces_counter = 0
 word_counter = 0
 character_counter = 0
 
-#create an empty dictionary to count occurances of words
-empty_dict = {}  
+#create an empty list to count occurances of words
+empty_list = [] 
 
 # open the file.
 my_file = open( "romeoandjuliet.txt", "r")
@@ -17,7 +17,7 @@ my_file = open( "romeoandjuliet.txt", "r")
 for current_line in my_file:
 
     # print the line
-    print( "current_line:" + current_line )
+    '''print( "current_line:" + current_line )'''
 
     #increment counter for each line read and print variable value
     line_counter = line_counter + 1
@@ -43,19 +43,25 @@ for current_line in my_file:
         print( "individual character length:" + str( len(current_word) ) )'''
         character_counter = character_counter + len(current_word)
 
-    #Code for catalog and counts for each word - start with string with extra blank space removed
-    word_stripped_list = stripped_string.split()  
-    for current_stripped_word in word_stripped_list: 
-    	if current_stripped_word != empty_dict:
-    	    empty_dict[current_stripped_word] = 0
- 
-
+    #catalog - create a list with all words in the file - start with lines that have extra blank space removed
+    word_stripped_list = stripped_string.split()
+    empty_list = empty_list + word_stripped_list  
+ 	
 #-- END loop over words and lines of file --#
 my_file.close()
 
-#Final Counter Values
+#Check list
+'''print("view list of all words in file:" + str(empty_list))
+print("number of words in whole file:" + str(len(empty_list)))'''
+
+#Final Counter Values 
 print( "final line counter:" + str(line_counter) )
 print( "final word counter:" + str(word_counter) )
 print( "final character counter not including spaces:" + str(character_counter) )
 print( "final character counter including spaces:" + str(character_with_spaces_counter) )
-print(empty_dict)
+
+#Final Catalog
+import collections
+print ("catalog:")
+print collections.Counter(empty_list)
+
